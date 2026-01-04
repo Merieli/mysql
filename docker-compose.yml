@@ -43,7 +43,7 @@ services:
         environment:
             MYSQL_USER: ${USER}
             MYSQL_PASSWORD: root
-            MYSQL_DATABASE: ${COMPOSE_PROJECT_NAME}
+            MYSQL_DATABASE: suco_vendas
             MYSQL_ROOT_PASSWORD: root
         healthcheck:
             test: mysqladmin ping
@@ -54,6 +54,7 @@ services:
             - 5440:3306
         volumes:
             - mysql_data:/var/lib/mysql
+            - ./BANCO:/docker-entrypoint-initdb.d # Adiciona scripts que são auto-executados ao iniciar em ordem alfabética
         networks:
             - app_network
 

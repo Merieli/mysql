@@ -14,6 +14,10 @@ Database Administrator, ou o Administrador de Banco de Dados. É o profissional 
 - Administração de acessos da função de cada usuário
 
 
+## Tuning
+
+
+
 
 ## Performance de consultas
 

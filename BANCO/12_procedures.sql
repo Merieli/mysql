@@ -1,12 +1,17 @@
 SET GLOBAL log_bin_trust_function_creators = 1;
 
+CREATE DATABASE IF NOT EXISTS `sucos_vendas`;
+
 USE `sucos_vendas`;
+
 DROP FUNCTION IF EXISTS `f_numero_aleatorio`;
 
 DELIMITER $$
+
 CREATE FUNCTION `f_numero_aleatorio` (min INTEGER, max INTEGER)
 RETURNS INTEGER
-READS SQL DATA
+DETERMINISTIC
+NO SQL
 BEGIN
     DECLARE vRetorno INTEGER;
     SELECT FLOOR((RAND() * (max - min + 1)) + min) INTO vRetorno;
@@ -16,9 +21,11 @@ END$$
 DELIMITER ;
 
 USE `sucos_vendas`;
+
 DROP FUNCTION IF EXISTS `f_cliente_aleatorio`;
 
 DELIMITER $$
+
 CREATE FUNCTION `f_cliente_aleatorio`() RETURNS varchar(11) CHARSET utf8mb4
 BEGIN
     DECLARE vRetorno VARCHAR(11);
@@ -37,6 +44,7 @@ DELIMITER ;
 DROP FUNCTION IF EXISTS `f_produto_aleatorio`;
 
 DELIMITER $$
+
 CREATE FUNCTION `f_produto_aleatorio`() RETURNS varchar(10) CHARSET utf8mb4
 BEGIN
     DECLARE vRetorno VARCHAR(10);
@@ -55,6 +63,7 @@ DELIMITER ;
 DROP FUNCTION IF EXISTS `f_vendedor_aleatorio`;
 
 DELIMITER $$
+
 CREATE FUNCTION `f_vendedor_aleatorio`() RETURNS varchar(5) CHARSET utf8mb4
 BEGIN
     DECLARE vRetorno VARCHAR(5);
@@ -86,7 +95,7 @@ DECLARE vItens INT;
 DECLARE vNumeroNota INT;
 DECLARE vContador INT DEFAULT 1;
 DECLARE vNumItensNota INT;
-SELECT MAX(numero) + 1 INTO vNumeroNota from notas_fiscais;
+SELECT IFNULL(MAX(numero), 0) + 1 INTO vNumeroNota from notas_fiscais;
 SET vCliente = f_cliente_aleatorio();
 SET vVendedor = f_vendedor_aleatorio();
 INSERT INTO notas_fiscais (CPF, MATRICULA, DATA_VENDA, NUMERO, IMPOSTO)
@@ -142,12 +151,3 @@ BEGIN
 END$$
 
 DELIMITER ;
-
-
-
-
-
-
-
-
-
