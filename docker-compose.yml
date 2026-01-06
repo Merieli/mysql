@@ -55,6 +55,7 @@ services:
         volumes:
             - mysql_data:/var/lib/mysql
             - ./BANCO:/docker-entrypoint-initdb.d # Adiciona scripts que são auto-executados ao iniciar em ordem alfabética
+            - ./.docker/mysql/my.cnf:/etc/mysql/conf.d/custom.cnf
         networks:
             - app_network
 
