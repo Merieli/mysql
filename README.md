@@ -149,5 +149,24 @@ SELECT (1000000 * ((DATA_LENGTH + INDEX_LENGTH)/ (SELECT COUNT(*) FROM nome_da_t
     WHERE TABLE_SCHEMA = 'nome_do_banco_de_dados' AND TABLE_NAME = 'nome_da_tabela';
 ```
 
+
+## Tablespaces
+
+É uma estrututura de armazenamento de dados que contém tabelas, índices e outros objetos de banco de dados. No MySQL, os tablespaces são usados principalmente com o mecanismo de armazenamento InnoDB para gerenciar como os dados são armazenados no disco.
+
+As bases do formato InnoDB podem ser armazenadas em um ou mais tablespaces. Esses tablespaces podem ser do tipo compartilhado ou dedicado, para cada tabela.
+
+Com o uso de tablespaces, é possível por exemplo, alocar diferentes tabelas ou índices para diferentes dispositivos de armazenamento, otimizando o desempenho e a utilização do espaço em disco.
+
+Comando para criar um tablespace:
+```sql
+CREATE TABLESPACE nome_do_tablespace ADD DATAFILE 'nome_do_tablespace.ibd' ENGINE=InnoDB;
+```
+
+Comando para verificar detalhes da nova tablespace:
+```sql
+SELECT * FROM INFORMATION_SCHEMA.INNODB_TABLESPACES;
+```
+
 ## Performance de consultas
 
