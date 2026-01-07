@@ -32,7 +32,7 @@ CREATE TABLE `itens_notas_fiscais_2` (
   CONSTRAINT `itens_notas_fiscais_2_ibfk_1` FOREIGN KEY (`CODIGO_DO_PRODUTO`) REFERENCES `tabela_de_produtos` (`CODIGO_DO_PRODUTO`),
   CONSTRAINT `itens_notas_fiscais_2_ibfk_2` FOREIGN KEY (`NUMERO`) REFERENCES `notas_fiscais_2` (`NUMERO`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
-TABLESPACE sucos_vendas;
+TABLESPACE sucos_vendas_2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

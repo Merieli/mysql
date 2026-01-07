@@ -34,7 +34,7 @@ CREATE TABLE `notas_fiscais_2` (
   CONSTRAINT `notas_fiscais_2_ibfk_1` FOREIGN KEY (`MATRICULA`) REFERENCES `tabela_de_vendedores` (`MATRICULA`),
   CONSTRAINT `notas_fiscais_2_ibfk_2` FOREIGN KEY (`CPF`) REFERENCES `tabela_de_clientes` (`CPF`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
-TABLESPACE sucos_vendas;
+TABLESPACE sucos_vendas_2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
