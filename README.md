@@ -168,5 +168,41 @@ Comando para verificar detalhes da nova tablespace:
 SELECT * FROM INFORMATION_SCHEMA.INNODB_TABLESPACES;
 ```
 
+Com a tablespace é necessário gerenciar e monitorar o crescimento do espaço em disco utilizado, para evitar problemas de falta de espaço que possam afetar o desempenho e a disponibilidade do banco de dados.
+
+- Desempenho: é um dos problemas que pode ser gerado, principalmente se o espaço em disco estiver quase cheio para alocação de novos dados ou operações na base de dados.
+- Disponibilidade: a falta de espaço em disco pode levar a falhas na gravação de dados, resultando em indisponibilidade do banco de dados.
+- integridade dos dados: ocorre perda quando há crescimento descontrolado do tablespace, levando a corrupção e fragmentação de dados ou falhas nas operações de banco de dados.
+- Planejamento de capacidade: é essencial monitorar o uso do tablespace para planejar futuras necessidades de armazenamento e evitar surpresas desagradáveis.
+
+Ao identificar que o tablespace está se aproximando do limite de capacidade, é recomendável tomar medidas proativas, como aumentar o tamanho do tablespace, mover dados para outros dispositivos de armazenamento ou otimizar o uso do espaço em disco.
+
+**Mover tablespace:**
+- É importante para otimização de desempenho, como é o caso de mover tablespaces para discos mais rápidos, como SSDs, para melhorar o tempo de resposta das consultas.
+- Também é uma opção para melhor distribuição de carga, movendo tablespaces para diferentes discos ou volumes ajudando a equilibrar a carga de I/O no sistema "entre leitura e escrita de dados".
+- É uma boa opção para recuperação de desastres, garantindo que haja espaço suficiente para operações de banco de dados críticas durante picos de carga ou falhas no sistema.
+- Garante um melhor gerenciamento do espaço em disco
+- Também facilita o isolamento de problemas, permitindo que tablespaces problemáticos sejam movidos para locais separados para análise e resolução de problemas sem afetar o restante do banco de dados.
+
+Exemplo de comando para mover um tablespace:
+```sql
+CREATE TABLESPACE sucos_vendas_3 ADD DATAFILE 'sucos_vendas_3.ibd ENGINE = InnoDB;
+
+DROP TABLE IF EXISTS `notas_fiscais_2`;
+CREATE TABLE `notas_fiscais_2 (
+    `CPF` varchar(11) NOT NULL,
+    `MATRICULA` varchar(5) NOT NULL,
+    `DATA_VENDA` date DEFAULT NULL,
+    `NUMERO` int NOT NULL,
+    `IMPOSTO` float NOT NULL
+O ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_0900_ai_ci
+TABLESPACE sucos_vendas_3;
+
+INSERT INTO notas_fiscais_2 SELECT * FROM sucos_vendas.notas_fiscais WHERE DATA_VENDA = 2015-01-01';
+INSERT INTO notas_fiscais_2 SELECT * FROM sucos_vendas.notas_fiscais WHERE DATA VENDA > '2015-01-01' AND DATA VENDA <= '2015-12-31';
+INSERT INTO notas_fiscais_2 SELECT * FROM sucos_vendas.notas_fiscais WHERE YEAR(DATA_VENDA) = 2016;
+```
+
+
 ## Performance de consultas
 
