@@ -203,6 +203,10 @@ INSERT INTO notas_fiscais_2 SELECT * FROM sucos_vendas.notas_fiscais WHERE DATA 
 INSERT INTO notas_fiscais_2 SELECT * FROM sucos_vendas.notas_fiscais WHERE YEAR(DATA_VENDA) = 2016;
 ```
 
+## Monitoramento do MySQL
+
+O MySQL Workbench é uma ferramenta específica para MySQL que oferece diversas funcionalidades de monitoramento do ambiente desse banco de dados. Embora possua uma série de recursos, ele não mostra dados nem gerencia outros bancos de dados.
+
 
 ## Performance de consultas
 
