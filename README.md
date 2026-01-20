@@ -207,6 +207,28 @@ INSERT INTO notas_fiscais_2 SELECT * FROM sucos_vendas.notas_fiscais WHERE YEAR(
 
 O MySQL Workbench é uma ferramenta específica para MySQL que oferece diversas funcionalidades de monitoramento do ambiente desse banco de dados. Embora possua uma série de recursos, ele não mostra dados nem gerencia outros bancos de dados.
 
+Com esta ferramenta, é possível monitorar o desempenho do servidor MySQL em tempo real, visualizar métricas como uso de CPU, memória, conexões ativas, consultas lentas, entre outras.
+
+
+## MySQLSLAP
+
+O MySQLSLAP (Scalable Load and Performance) é uma ferramenta de benchmark que permite simular cargas de trabalho no servidor MySQL para avaliar seu desempenho sob diferentes condições. Ele é útil para testar a capacidade do servidor, identificar gargalos de desempenho e comparar diferentes configurações do MySQL.
+
+Permite o controle de concorrência e interações, proporcionando uma visão detalhada de como o servidor responde a diferentes tipos de cargas de trabalho. Assim como é possível utilizar variação de carga no esquema de dados.
+
+Exemplo de uso básico do MySQLSLAP:
+```
+mysqlslap
+--concurrency=50 
+--iterations=100 
+--query="SELECT * FROM my_table"
+--create-schema=mydatabase
+--auto-generate-sql
+--number-of-queries=10
+--user=myuser
+--password=mypassword
+```
+
 
 ## Performance de consultas
 
